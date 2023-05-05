@@ -30,10 +30,9 @@ public class User implements UserDetails {
     private String password;
     private String role;
 
-    private List<SimpleGrantedAuthority> authorities;
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<SimpleGrantedAuthority> authorities;
         authorities = Arrays.stream(getRole().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
